@@ -75,7 +75,7 @@ function calculate(){
         body:JSON.stringify({ expression: display.value })
     })
     .then(res=>res.json())
-    .then(data=> display.value = data.result ?? "Error");
+    .then(data=> display.value = data.result ?? "Error!");
 }
 
 /* ANIMATION FLOW */
