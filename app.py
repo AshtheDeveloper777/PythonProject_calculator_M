@@ -16,7 +16,7 @@ ALLOWED = {
     'pi': math.pi, 'e': math.e
 }
 
-@app.route('./')
+@app.route('/')
 def home():
     return render_template('index.html')
 
