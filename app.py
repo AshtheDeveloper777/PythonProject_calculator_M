@@ -25,9 +25,8 @@ def home():
 def calculate():
     expr = request.json.get('expression', '')
     try:
+        # Safely evaluate the expression
         result = eval(expr, {"__builtins__": None}, ALLOWED)
         return jsonify(result=str(result))
     except:
         return jsonify(result="Error")
-
-# gunicorn will run the app; no need for app.run()
