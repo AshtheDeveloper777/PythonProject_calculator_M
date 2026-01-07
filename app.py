@@ -3,6 +3,7 @@ import math
 
 app = Flask(__name__)
 
+# Math functions
 def sin(x): return math.sin(math.radians(x))
 def cos(x): return math.cos(math.radians(x))
 def tan(x): return math.tan(math.radians(x))
@@ -20,7 +21,7 @@ ALLOWED = {
 def home():
     return render_template('index.html')
 
-@app.route('/calculatee', methods=['POST'])
+@app.route('/calculate', methods=['POST'])
 def calculate():
     expr = request.json.get('expression', '')
     try:
@@ -29,5 +30,4 @@ def calculate():
     except:
         return jsonify(result="Error")
 
-if __name__ == "__main__":
-    app.run(debug=False)
+# gunicorn will run the app; no need for app.run()

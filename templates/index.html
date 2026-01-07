@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<!-- YOUR ACTUAL CALCULATOR -->
+<!-- ACTUAL CALCULATOR -->
 <div class="calculator hidden" id="calculator">
     <h1>Scientific Calculator</h1>
     <input id="display" readonly placeholder="0"/>
@@ -78,12 +78,9 @@ function calculate(){
     .then(data=> display.value = data.result ?? "Error");
 }
 
-/* ANIMATION FLOW */
+/* MINI CALC ANIMATION */
 setTimeout(()=> mini.classList.add("expand"),2000);
-setTimeout(()=>{
-    mini.remove();
-    calc.classList.remove("hidden");
-},2600);
+setTimeout(()=>{ mini.remove(); calc.classList.remove("hidden"); },2600);
 </script>
 
 </body>
