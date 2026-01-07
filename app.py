@@ -20,7 +20,7 @@ ALLOWED = {
 def home():
     return render_template('index.html')
 
-@app.route('/calculate', methods=['POST'])
+@app.route('/calculatee', methods=['POST'])
 def calculate():
     expr = request.json.get('expression', '')
     try:
