@@ -1,0 +1,122 @@
+body {
+    background: radial-gradient(circle, #020617, #000);
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    color: white;
+}
+
+.hidden { display: none; }
+
+/* MINI CALCULATOR */
+#mini-calc{
+    position: fixed;
+    top: 50%;
+    left: -160px;
+    transform: translateY(-50%);
+    width: 120px;
+    height: 165px;
+    padding: 12px;
+    border-radius: 18px;
+    background: #020617;
+    box-shadow: 0 25px 60px black, 0 0 30px #22d3ee;
+    animation: runAcross 1.8s ease-out forwards;
+}
+
+@keyframes runAcross{
+    70%{ left: 52%; }
+    100%{
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.expand{
+    animation: expand 0.8s ease forwards;
+}
+
+@keyframes expand{
+    to{
+        transform: translate(-50%, -50%) scale(6);
+        opacity: 0;
+    }
+}
+
+.mini-screen{
+    background: black;
+    color: #22d3ee;
+    height: 28px;
+    border-radius: 6px;
+    padding: 5px;
+    text-align: right;
+}
+
+.mini-keys{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 6px;
+}
+
+.mini-keys span{
+    height: 20px;
+    background: #1e293b;
+    border-radius: 5px;
+}
+
+/* YOUR CALCULATOR (UNCHANGED STYLE) */
+.calculator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #020617;
+    padding: 25px;
+    border-radius: 20px;
+    width: 380px;
+    box-shadow: 0 0 40px rgba(0,255,255,0.15);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    font-size: 22px;
+    background: black;
+    color: #22d3ee;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 14px;
+    font-size: 16px;
+    background: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+button:hover { background: #334155; }
+
+.equal {
+    grid-column: span 3;
+    background: #22c55e;
+}
+
+.danger { background: #ef4444; }
+.warn { background: #f59e0b; }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- MINI CALCULATOR (ANIMATION ONLY) -->
+<div id="mini-calc">
+    <div class="mini-screen">0</div>
+    <div class="mini-keys">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- YOUR ACTUAL CALCULATOR -->
+<div class="calculator hidden" id="calculator">
+    <h1>Scientific Calculator</h1>
+    <input id="display" readonly placeholder="0"/>
+
+    <div class="grid">
+        <button onclick="press('7')">7</button>
+        <button onclick="press('8')">8</button>
+        <button onclick="press('9')">9</button>
+        <button onclick="press('/')">÷</button>
+        <button onclick="press('sin(')">sin</button>
+
+        <button onclick="press('4')">4</button>
+        <button onclick="press('5')">5</button>
+        <button onclick="press('6')">6</button>
+        <button onclick="press('*')">×</button>
+        <button onclick="press('cos(')">cos</button>
+
+        <button onclick="press('1')">1</button>
+        <button onclick="press('2')">2</button>
+        <button onclick="press('3')">3</button>
+        <button onclick="press('-')">−</button>
+        <button onclick="press('tan(')">tan</button>
+
+        <button onclick="press('0')">0</button>
+        <button onclick="press('.')">.</button>
+        <button onclick="press('+')">+</button>
+        <button onclick="press('(')">(</button>
+        <button onclick="press(')')">)</button>
+
+        <button onclick="press('sqrt(')">√</button>
+        <button onclick="press('log(')">log</button>
+        <button onclick="press('ln(')">ln</button>
+        <button onclick="press('pi')">π</button>
+        <button onclick="press('e')">e</button>
+
+        <button class="danger" onclick="clearDisplay()">C</button>
+        <button class="warn" onclick="backspace()">DEL</button>
+        <button class="equal" onclick="calculate()">=</button>
+    </div>
+</div>
+
+<script>
+let display = document.getElementById("display");
+const mini = document.getElementById("mini-calc");
+const calc = document.getElementById("calculator");
+
+function press(val){ display.value += val; }
+function clearDisplay(){ display.value = ""; }
+function backspace(){ display.value = display.value.slice(0,-1); }
+
+function calculate(){
+    fetch("/calculate",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({ expression: display.value })
+    })
+    .then(res=>res.json())
+    .then(data=> display.value = data.result ?? "Error");
+}
+
+/* ANIMATION FLOW */
+setTimeout(()=> mini.classList.add("expand"),2000);
+setTimeout(()=>{
+    mini.remove();
+    calc.classList.remove("hidden");
+},2600);
+</script>
+
+</body>
+</html>
